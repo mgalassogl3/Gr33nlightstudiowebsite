@@ -14,7 +14,7 @@ export default function CommercialPage() {
 
   return (
     <>
-      <PageHero eyebrow="Commercial" title="Video that moves people." accent="blue">
+      <PageHero eyebrow="Commercial" title="Video that moves people." accent="blue" art="/art/icon-camera.webp">
         <p>We bring a film crew’s eye to brands, businesses and artists — from a single social clip to a full campaign.</p>
         <div className="btnRow">
           <a href="#book" className="btn btnPrimary">

@@ -3,6 +3,7 @@ import '@fontsource-variable/inter';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Reveal from '@/components/Reveal';
 import { site } from '@/lib/site';
 
 export const metadata = {
@@ -14,6 +15,7 @@ export const metadata = {
   description: site.description,
   openGraph: {
     type: 'website',
+    images: [{ url: '/art/mascot.webp', width: 555, height: 900, alt: 'Gr33nlight Studios mascot' }],
     siteName: site.name,
     locale: 'en_US',
   },
@@ -45,6 +47,7 @@ export default function RootLayout({ children }) {
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <Reveal />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
       </body>
     </html>

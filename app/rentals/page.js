@@ -13,7 +13,7 @@ export const metadata = {
 export default function RentalsPage() {
   return (
     <>
-      <PageHero eyebrow="Rentals" title="Grip & lighting, ready to roll." accent="orange">
+      <PageHero eyebrow="Rentals" title="Grip & lighting, ready to roll." accent="orange" art="/art/bulb.webp">
         <p>Pro gear for your shoot, out of East Hanover, NJ. Add what you need, pick your dates, and send the request — we’ll confirm availability and pricing.</p>
         <div className="btnRow">
           <a href="#request" className="btn btnPrimary">

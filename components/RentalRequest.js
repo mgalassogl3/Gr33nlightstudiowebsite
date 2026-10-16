@@ -25,6 +25,8 @@ export default function RentalRequest({ gear }) {
             <div className="gearMedia">
               {item.image ? (
                 <img src={item.image} alt={item.name} loading="lazy" />
+              ) : item.art ? (
+                <img src={item.art} alt="" className="gearArt" loading="lazy" />
               ) : (
                 <Icon name={item.category === 'Lighting' ? 'light' : item.category === 'Camera movement' ? 'camera' : 'film'} size={44} />
               )}

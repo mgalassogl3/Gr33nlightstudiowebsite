@@ -28,6 +28,11 @@ Nearly everything lives in **`lib/site.js`**. Edit it and redeploy. Anything lef
 - **Commercial:** add `clients`, `projects` (YouTube/Vimeo links) and real `testimonials`.
 - **Boot camp:** dates, price and tracks are in `bootcamp`. Set `paymentLink` (Venmo, Cash App, PayPal.me, Square or a Stripe Payment Link) to show a "Pay $297" button after someone signs up.
 
+## Artwork
+
+`public/art/` holds the GL3 artwork (mascot, lightbulb logo, hub characters, gear icons and spotlight
+stage backgrounds), cropped and compressed from the GL3 Hub artwork. Real photos go in `public/images/`.
+
 ## How the forms work
 
 There's no server or paid form service. Every form (boot camp sign-up, rental request, booking, contact)

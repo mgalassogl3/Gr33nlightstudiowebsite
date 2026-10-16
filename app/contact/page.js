@@ -13,7 +13,7 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <>
-      <PageHero eyebrow="Contact" title="Let’s make something.">
+      <PageHero eyebrow="Contact" title="Let’s make something." art="/art/mascot-flex.webp">
         <p>Projects, rentals, the boot camp, or just saying hi — the fastest way to reach us is a text.</p>
         <SocialLinks links={site.socials} withLabels />
       </PageHero>

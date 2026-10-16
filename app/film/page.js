@@ -14,7 +14,7 @@ export const metadata = {
 export default function FilmPage() {
   return (
     <>
-      <PageHero eyebrow="Film" title="Stories that get the green light.">
+      <PageHero eyebrow="Film" title="Stories that get the green light." art="/art/icon-acting.webp">
         <p>We develop, shoot and finish our own features and shorts in New Jersey. Here’s what’s on the slate.</p>
       </PageHero>
 

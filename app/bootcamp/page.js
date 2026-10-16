@@ -112,10 +112,14 @@ export default function BootcampPage() {
           </div>
           <div className="tracks">
             {bootcamp.tracks.map((t) => (
-              <article key={t.id} className={`track c-${t.color}`}>
-                <span className="trackIcon">
-                  <Icon name={t.icon} size={24} />
-                </span>
+              <article key={t.id} className={`track c-${t.color} reveal`}>
+                {t.art ? (
+                  <img src={t.art} alt="" className="trackArt" loading="lazy" />
+                ) : (
+                  <span className="trackIcon">
+                    <Icon name={t.icon} size={24} />
+                  </span>
+                )}
                 <h3 className="cardTitle">{t.name}</h3>
                 <ul className="ticks">
                   {t.points.map((p) => (
