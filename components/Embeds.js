@@ -26,7 +26,7 @@ export function VideoFile({ src, poster, title, vertical = false, loop = false }
         src={src}
         poster={poster}
         title={title}
-        controls={!loop}
+        controls
         autoPlay={loop}
         muted={loop}
         loop={loop}

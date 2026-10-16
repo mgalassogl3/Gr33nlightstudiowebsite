@@ -1546,3 +1546,11 @@ textarea {
   margin-top: 10px;
   font-size: 13px;
 }
+@media (min-width: 860px) {
+  .workGrid > article:first-child {
+    grid-column: 1 / -1;
+  }
+}
+.logoWall {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
