@@ -13,7 +13,7 @@ export const metadata = {
 };
 
 // Strongest results first.
-const rank = (l) => ['winner', 'finalist', 'nominee', 'quarter', 'selection'].findIndex((k) => l.status.toLowerCase().includes(k));
+const rank = (l) => ['best', 'winner', 'finalist', 'nominee', 'quarter', 'selection'].findIndex((k) => l.status.toLowerCase().includes(k));
 const laurelsFor = (slug) => laurels.filter((l) => l.project === slug).sort((a, b) => rank(a) - rank(b));
 
 export default function FilmPage() {
