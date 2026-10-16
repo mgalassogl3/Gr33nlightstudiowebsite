@@ -8,7 +8,9 @@ export default function RentalRequest({ gear }) {
   const [qty, setQty] = useState({});
   const today = new Date().toISOString().slice(0, 10);
 
-  const change = (id, delta) => setQty((q) => ({ ...q, [id]: Math.max(0, Math.min(20, (q[id] || 0) + delta)) }));
+  const maxOf = (item) => item.available ?? 20;
+  const change = (item, delta) =>
+    setQty((q) => ({ ...q, [item.id]: Math.max(0, Math.min(maxOf(item), (q[item.id] || 0) + delta)) }));
 
   const selected = gear.filter((g) => qty[g.id]);
   const itemCount = selected.reduce((n, g) => n + qty[g.id], 0);
@@ -25,16 +27,24 @@ export default function RentalRequest({ gear }) {
             )}
             <div>
               <h3 className="gearName">{item.name}</h3>
-              <span className="gearCat">{item.category}</span>
+              <span className="gearCat">
+                {item.category}
+                {item.available ? ` · ${item.available} available` : ''}
+              </span>
             </div>
             <p className="gearSpecs">{item.specs.join(' · ')}</p>
             <span className="rate">{item.rate ? `$${item.rate} / day` : 'Rate on request'}</span>
             <div className="stepper" role="group" aria-label={`Quantity of ${item.name}`}>
-              <button type="button" onClick={() => change(item.id, -1)} aria-label={`Remove one ${item.name}`} disabled={!qty[item.id]}>
+              <button type="button" onClick={() => change(item, -1)} aria-label={`Remove one ${item.name}`} disabled={!qty[item.id]}>
                 <Icon name="minus" size={16} />
               </button>
               <output aria-live="polite">{qty[item.id] || 0}</output>
-              <button type="button" onClick={() => change(item.id, 1)} aria-label={`Add one ${item.name}`}>
+              <button
+                type="button"
+                onClick={() => change(item, 1)}
+                aria-label={`Add one ${item.name}`}
+                disabled={(qty[item.id] || 0) >= maxOf(item)}
+              >
                 <Icon name="plus" size={16} />
               </button>
             </div>
