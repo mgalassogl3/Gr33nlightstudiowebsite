@@ -48,7 +48,7 @@ export default function RentalRequest({ gear, discounts }) {
         {gear.map((item) => (
           <li key={item.id} className={`gearRow ${qty[item.id] ? 'gearRowOn' : ''}`}>
             {item.image ? (
-              <img src={item.image} alt={item.name} className="gearThumb" loading="lazy" />
+              <img src={item.image} alt={item.name} className={`gearThumb ${item.productShot ? 'gearThumbProduct' : ''}`} loading="lazy" />
             ) : (
               <span className="gearThumb gearThumbEmpty" aria-hidden="true" />
             )}

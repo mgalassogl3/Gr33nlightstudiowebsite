@@ -1503,3 +1503,9 @@ textarea {
   font-size: 44px;
   line-height: 1;
 }
+
+.gearThumbProduct {
+  object-fit: contain;
+  background: #fff;
+  padding: 6px;
+}
