@@ -4,8 +4,8 @@ import { SpotifyEmbed } from '@/components/Embeds';
 import { bootcamp, films, homeHero, music } from '@/lib/site';
 
 const index = [
-  { href: '/film', title: 'Film', text: 'Original features and shorts, made in New Jersey.' },
-  { href: '/music', title: 'Music', text: 'Marcus Glass and the artists of the GL3 Hub.' },
+  { href: '/film', title: 'Film', text: 'Hartless, Looking For Hart and the full slate.' },
+  { href: '/music', title: 'Music', text: 'Marcus Glass — and the GL3 Hub, coming soon.' },
   { href: '/bootcamp', title: 'Boot Camp', text: 'A month-long, hands-on course for content creators.' },
   { href: '/rentals', title: 'Rentals', text: 'Lighting, grip and camera gear for your shoot.' },
   { href: '/commercial', title: 'Commercial', text: 'Brand, social and event video.' },
@@ -32,7 +32,7 @@ export default function Home() {
             <span>
               {film.status} · {film.release}
             </span>
-            <Link href="/film" className="arrowLink">
+            <Link href="/hartless" className="arrowLink">
               About the film <Icon name="arrow" size={16} />
             </Link>
           </div>
@@ -68,7 +68,7 @@ export default function Home() {
         <section className="section" style={{ paddingTop: 0 }}>
           <div className="container">
             <figure className="wideStill">
-              <Link href="/film" aria-label={`${film.title} — about the film`}>
+              <Link href="/hartless" aria-label={`${film.title} — about the film`}>
                 <img src={film.banner} alt={`Still from ${film.title}`} loading="lazy" />
               </Link>
               <figcaption>

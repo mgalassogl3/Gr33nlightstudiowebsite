@@ -1,7 +1,7 @@
 import { site } from '@/lib/site';
 
 export default function sitemap() {
-  return ['', '/film', '/music', '/bootcamp', '/rentals', '/commercial', '/contact'].map((path) => ({
+  return ['', '/film', '/hartless', '/music', '/bootcamp', '/rentals', '/commercial', '/contact'].map((path) => ({
     url: `${site.url}${path}`,
     lastModified: new Date(),
     changeFrequency: 'weekly',

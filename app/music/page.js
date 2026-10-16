@@ -1,8 +1,8 @@
-import Link from 'next/link';
 import PageHero from '@/components/PageHero';
 import { SpotifyEmbed } from '@/components/Embeds';
 import SocialLinks from '@/components/SocialLinks';
 import { banners, featuredArtists, music } from '@/lib/site';
+import { smsHref } from '@/lib/links';
 
 export const metadata = {
   title: 'Music',
@@ -73,7 +73,9 @@ export default function MusicPage() {
           <div className="hub">
             <div className="sectionHead" style={{ marginBottom: 0 }}>
               <div>
-                <p className="label">The GL3 Hub</p>
+                <p className="label">
+                  The GL3 Hub · <span className="soonTag">Coming soon</span>
+                </p>
                 <h2 className="h2">A home for independent music.</h2>
               </div>
               <p className="muted">The GL3 Hub connects artists, performers, engineers and managers with the studio and with each other.</p>
@@ -88,9 +90,9 @@ export default function MusicPage() {
               ))}
             </div>
             <div className="btnRow" style={{ justifyContent: 'center' }}>
-              <Link href="/contact" className="btn btnPrimary">
-                Join the GL3 Hub
-              </Link>
+              <a href={smsHref('Hi GL3! Let me know when the GL3 Hub launches.')} className="btn btnPrimary">
+                Get notified at launch
+              </a>
             </div>
           </div>
         </div>
