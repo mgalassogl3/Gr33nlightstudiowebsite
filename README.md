@@ -34,7 +34,9 @@ The site is intentionally minimal: black, off-white type and one green accent, l
 
 - **Home opening shot:** set `homeHero.image` (a still) and/or `homeHero.video` (a short muted mp4 loop)
   in `lib/site.js`. Until then the Hartless title sits on a soft key light.
-- **Photos** go in `public/images/`, video in `public/video/`.
+- **Photos** go in `public/images/`, video in `public/video/`. Upload raw files anywhere and they can be
+  converted to web-sized `.webp` / short muted `.mp4` loops (Hartless stills are in `public/images/hartless/`,
+  behind-the-scenes in `public/images/set/`).
 - `public/art/` holds the four GL3 Hub characters, used only in the "GL3 Hub" section of the Music page.
 
 ## How the forms work

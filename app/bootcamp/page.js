@@ -1,7 +1,7 @@
 import Icon from '@/components/Icon';
 import PageHero from '@/components/PageHero';
 import { BootcampSignup } from '@/components/Forms';
-import { bootcamp, site } from '@/lib/site';
+import { banners, bootcamp, site } from '@/lib/site';
 import { smsHref, telHref } from '@/lib/links';
 
 export const metadata = {
@@ -42,6 +42,8 @@ export default function BootcampPage() {
       <PageHero
         label={`Boot Camp · starts ${bootcamp.startLabel}`}
         title={bootcamp.name}
+        image={banners.bootcamp}
+        position="center 35%"
         after={
           <>
             <ul className="facts">

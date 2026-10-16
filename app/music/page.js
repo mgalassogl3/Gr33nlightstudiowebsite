@@ -2,7 +2,7 @@ import Link from 'next/link';
 import PageHero from '@/components/PageHero';
 import { SpotifyEmbed } from '@/components/Embeds';
 import SocialLinks from '@/components/SocialLinks';
-import { featuredArtists, music } from '@/lib/site';
+import { banners, featuredArtists, music } from '@/lib/site';
 
 export const metadata = {
   title: 'Music',
@@ -21,22 +21,26 @@ export default function MusicPage() {
 
   return (
     <>
-      <PageHero label="Music" title={music.artist}>
+      <PageHero label="Music" title={music.artist} image={banners.music} position="center 30%">
         <p>{music.bio}</p>
         <SocialLinks links={{ spotify: music.spotify[0], instagram: music.instagram, tiktok: music.tiktok }} withLabels />
       </PageHero>
 
       {latest && (
         <section className="section">
-          <div className="container">
-            <SpotifyEmbed url={latest} title={`${music.artist} on Spotify`} />
-            {more.length > 0 && (
-              <div className="artistGrid" style={{ marginTop: 24 }}>
-                {more.map((url) => (
-                  <SpotifyEmbed key={url} url={url} compact />
-                ))}
-              </div>
-            )}
+          <div className="container portraitRow">
+            {music.photo2 && <img src={music.photo2} alt={music.artist} loading="lazy" />}
+            <div>
+              <p className="label">Listen</p>
+              <SpotifyEmbed url={latest} title={`${music.artist} on Spotify`} />
+              {more.length > 0 && (
+                <div className="artistGrid" style={{ marginTop: 24 }}>
+                  {more.map((url) => (
+                    <SpotifyEmbed key={url} url={url} compact />
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </section>
       )}

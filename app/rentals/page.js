@@ -1,6 +1,6 @@
 import PageHero from '@/components/PageHero';
 import RentalRequest from '@/components/RentalRequest';
-import { gear, rentalTerms, site } from '@/lib/site';
+import { banners, gear, rentalTerms, site } from '@/lib/site';
 import { smsHref, telHref } from '@/lib/links';
 
 export const metadata = {
@@ -15,6 +15,7 @@ export default function RentalsPage() {
       <PageHero
         label="Rentals"
         title="Grip & lighting."
+        image={banners.rentals}
         after={
           <div className="btnRow">
             <a href="#request" className="btn btnPrimary">

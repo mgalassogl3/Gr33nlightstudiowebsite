@@ -64,6 +64,22 @@ export default function Home() {
         </div>
       </section>
 
+      {film.banner && (
+        <section className="section" style={{ paddingTop: 0 }}>
+          <div className="container">
+            <figure className="wideStill">
+              <Link href="/film" aria-label={`${film.title} — about the film`}>
+                <img src={film.banner} alt={`Still from ${film.title}`} loading="lazy" />
+              </Link>
+              <figcaption>
+                <span>{film.title}</span>
+                <span>Directed by {film.director} · {film.release}</span>
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+      )}
+
       <section className="section sectionTop">
         <div className="container">
           <p className="label">Now</p>

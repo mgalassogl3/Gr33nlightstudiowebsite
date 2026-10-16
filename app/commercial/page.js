@@ -1,7 +1,7 @@
 import PageHero from '@/components/PageHero';
 import { VideoEmbed } from '@/components/Embeds';
 import { ProjectInquiry } from '@/components/Forms';
-import { commercial } from '@/lib/site';
+import { banners, commercial } from '@/lib/site';
 
 export const metadata = {
   title: 'Commercial Video Production in NJ',
@@ -17,6 +17,8 @@ export default function CommercialPage() {
       <PageHero
         label="Commercial"
         title="A film crew for your brand."
+        image={banners.commercial}
+        video={banners.commercialVideo}
         after={
           <div className="btnRow">
             <a href="#book" className="btn btnPrimary">
