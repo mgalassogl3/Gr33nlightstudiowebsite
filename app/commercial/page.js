@@ -11,8 +11,9 @@ export const metadata = {
 
 export default function CommercialPage() {
   const { services, clients, projects: allProjects, testimonials } = commercial;
-  const projects = allProjects.filter((p) => !p.vertical);
-  const social = allProjects.filter((p) => p.vertical);
+  const projects = allProjects.filter((p) => !p.vertical && !p.group);
+  const social = allProjects.filter((p) => p.vertical && !p.group);
+  const events = allProjects.filter((p) => p.group === 'events');
 
   return (
     <>
@@ -62,6 +63,31 @@ export default function CommercialPage() {
             </div>
             <div className="socialRow">
               {social.map((p) => (
+                <figure key={p.file || p.video} className="socialClip">
+                  <VideoFile src={p.file} poster={p.poster} title={p.title} vertical loop />
+                  <figcaption className="muted">{[p.client, p.title].filter(Boolean).join(' · ')}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {events.length > 0 && (
+        <section className="section sectionTop" id="events">
+          <div className="container">
+            <div className="sectionHead">
+              <div>
+                <p className="label">Live coverage</p>
+                <h2 className="h2">Events & education</h2>
+              </div>
+              <p className="muted">
+                We cover classes, workshops and live events — and cut them into clips that keep teaching long after the day. Shown: a RICI
+                curl education class.
+              </p>
+            </div>
+            <div className="socialRow">
+              {events.map((p) => (
                 <figure key={p.file || p.video} className="socialClip">
                   <VideoFile src={p.file} poster={p.poster} title={p.title} vertical loop />
                   <figcaption className="muted">{[p.client, p.title].filter(Boolean).join(' · ')}</figcaption>
