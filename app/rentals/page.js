@@ -6,7 +6,7 @@ import { smsHref, telHref } from '@/lib/links';
 export const metadata = {
   title: 'Grip & Lighting Rentals in NJ',
   description:
-    'Rent GVM SD300B Pro LED lights (15 available), C-stands, a Dana Dolly, a flag kit and clamps in East Hanover, NJ. Students 50% off, first rental 25% off.',
+    'Rent GVM SD300B Pro LED lights (15 available), C-stands, a Dana Dolly, a flag kit and A-clamps in East Hanover, NJ. Students 50% off, first rental 25% off.',
 };
 
 export default function RentalsPage() {

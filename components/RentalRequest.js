@@ -63,7 +63,7 @@ export default function RentalRequest({ gear, discounts }) {
             <span className="rate">
               {item.rate ? (
                 <>
-                  <strong>${item.rate}</strong> / day{item.unit && item.unit !== 'kit' ? `, ${item.unit}` : ''}
+                  <strong>${item.rate}</strong> / day{item.unit === 'each' ? ', each' : ''}
                 </>
               ) : (
                 'Rate on request'
