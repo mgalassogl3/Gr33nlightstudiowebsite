@@ -119,7 +119,14 @@ export default function CommercialPage() {
             <p className="label">Who we’ve worked with</p>
             <div className="logoWall">
               {clients.map((c) => {
-                const inner = c.logo ? <img src={c.logo} alt={c.name} loading="lazy" /> : c.name;
+                const inner = c.logo ? (
+                  <img src={c.logo} alt={c.name} loading="lazy" />
+                ) : (
+                  <span className="clientName">
+                    {c.name}
+                    {c.place && <span className="clientPlace">{c.place}</span>}
+                  </span>
+                );
                 return c.url ? (
                   <a key={c.name} href={c.url} className="logoCell" target="_blank" rel="noopener noreferrer">
                     {inner}

@@ -1801,3 +1801,25 @@ textarea {
   font-style: italic;
   color: var(--muted);
 }
+
+.clientName {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.clientPlace {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+@media (max-width: 640px) {
+  .logoWall {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .logoCell {
+    min-height: 110px;
+    padding: 14px 10px;
+    font-size: 15px;
+  }
+}
