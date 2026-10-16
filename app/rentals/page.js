@@ -6,7 +6,7 @@ import { smsHref, telHref } from '@/lib/links';
 export const metadata = {
   title: 'Lighting, Grip & Camera Rentals in NJ',
   description:
-    'Rent GVM SD300B Pro LED lights (15 available), a Lumix GX8 4K camera kit, C-stands, a Dana Dolly, a flag kit and A-clamps in East Hanover, NJ. Students 50% off, first rental 25% off.',
+    'Rent GVM SD300B Pro LED lights (15 available), a Lumix GX8 4K camera kit, C-stands and shorty C-stands, a Dana Dolly, a flag kit, A-clamps, sandbags and apple boxes in East Hanover, NJ. Students 50% off, first rental 25% off.',
 };
 
 export default function RentalsPage() {
