@@ -66,11 +66,19 @@ export default function FilmPage() {
       </section>
 
       {studioLaurels.length > 0 && (
-        <section className="laurelBand" aria-label="Laurels and awards">
-          <div className="container laurels">
-            {studioLaurels.map((l) => (
-              <Laurel key={l.id} laurel={l} height={92} />
-            ))}
+        <section className="laurelBand" aria-label="Earlier work">
+          <div className="container">
+            <p className="label" style={{ textAlign: 'center' }}>
+              Earlier work
+            </p>
+            <div className="laurels">
+              {studioLaurels.map((l) => (
+                <figure key={l.id} className="laurelFigure">
+                  <Laurel laurel={l} height={92} />
+                  {l.work && <figcaption className="serif">{l.work}</figcaption>}
+                </figure>
+              ))}
+            </div>
           </div>
         </section>
       )}

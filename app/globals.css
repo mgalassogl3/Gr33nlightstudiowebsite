@@ -1788,3 +1788,16 @@ textarea {
   gap: 12px 20px;
   align-items: center;
 }
+
+.laurelFigure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.laurelFigure figcaption {
+  font-size: 20px;
+  font-style: italic;
+  color: var(--muted);
+}
