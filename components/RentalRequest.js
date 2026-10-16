@@ -13,7 +13,8 @@ function rentalDays(pickup, ret) {
 }
 
 // Discounts apply one after the other, so they stack multiplicatively.
-export function estimate(items, qty, days, discounts, flags) {
+// Delivery is added after discounts and is never discounted.
+export function estimate(items, qty, days, discounts, flags, deliveryFee = 0) {
   const perDay = items.reduce((sum, g) => sum + (g.rate || 0) * (qty[g.id] || 0), 0);
   const subtotal = perDay * days;
   const lines = [];
@@ -24,10 +25,11 @@ export function estimate(items, qty, days, discounts, flags) {
     lines.push({ label: `${discounts[key].label} ${discounts[key].percent}% off`, amount: -off });
     total -= off;
   }
-  return { perDay, subtotal, lines, total, unpriced: items.some((g) => qty[g.id] && !g.rate) };
+  total += deliveryFee;
+  return { perDay, subtotal, lines, total, deliveryFee, unpriced: items.some((g) => qty[g.id] && !g.rate) };
 }
 
-export default function RentalRequest({ gear, discounts }) {
+export default function RentalRequest({ gear, discounts, delivery = [] }) {
   const [qty, setQty] = useState({});
   const [form, setForm] = useState({});
   const today = new Date().toISOString().slice(0, 10);
@@ -40,7 +42,9 @@ export default function RentalRequest({ gear, discounts }) {
   const itemCount = selected.reduce((n, g) => n + qty[g.id], 0);
   const days = rentalDays(form.pickup, form.return);
   const flags = { student: !!form.student, firstTime: !!form.firstTime };
-  const est = estimate(selected, qty, days, discounts, flags);
+  const deliveryFor = (value) => delivery.find((d) => value?.startsWith(d.label));
+  const chosen = deliveryFor(form.delivery);
+  const est = estimate(selected, qty, days, discounts, flags, chosen?.fee || 0);
 
   return (
     <>
@@ -113,13 +117,20 @@ export default function RentalRequest({ gear, discounts }) {
                     <span>−{money(-l.amount)}</span>
                   </li>
                 ))}
+                {chosen?.fee > 0 && (
+                  <li>
+                    <span>{chosen.label.replace('Delivery — ', 'Delivery · ')}</span>
+                    <span>+{money(chosen.fee)}</span>
+                  </li>
+                )}
               </ul>
               <p className="estimateTotal">
                 <span>Estimated total</span>
                 <strong>{money(est.total)}</strong>
               </p>
               <p className="muted formHint">
-                Estimate before deposit{est.unpriced ? ', plus items priced on request' : ''}. We’ll confirm the final price.
+                Estimate before deposit{est.unpriced ? ', plus items priced on request' : ''}
+                {chosen?.fee > 0 ? '. Discounts don’t apply to delivery' : ''}. We’ll confirm the final price.
               </p>
             </div>
           ) : (
@@ -138,12 +149,22 @@ export default function RentalRequest({ gear, discounts }) {
               { name: 'return', label: 'Return date', type: 'date', required: true, min: form.pickup || today },
               { name: 'student', label: `I’m a student (${discounts.student.percent}% off)`, type: 'checkbox', full: true },
               { name: 'firstTime', label: `This is my first rental with GL3 (${discounts.firstTime.percent}% off)`, type: 'checkbox', full: true },
+              {
+                name: 'delivery',
+                label: 'Pickup or delivery',
+                type: 'select',
+                required: true,
+                full: true,
+                options: delivery.map((d) => `${d.label} · ${d.fee ? `$${d.fee}` : 'free'}`),
+              },
+              { name: 'address', label: 'Delivery address (if delivering)', type: 'text', full: true },
               { name: 'notes', label: 'Project / notes', type: 'textarea', full: true },
             ]}
             compose={(v) => {
               const f = { student: !!v.student, firstTime: !!v.firstTime };
               const d = rentalDays(v.pickup, v.return);
-              const e = estimate(selected, qty, d, discounts, f);
+              const del = deliveryFor(v.delivery);
+              const e = estimate(selected, qty, d, discounts, f, del?.fee || 0);
               const lines = selected.map((g) => `- ${g.name} x${qty[g.id]}`).join('\n');
               const claims = [f.student && 'Student', f.firstTime && 'First rental'].filter(Boolean).join(' + ');
               const body = [
@@ -151,6 +172,8 @@ export default function RentalRequest({ gear, discounts }) {
                 `Dates: ${v.pickup} to ${v.return} (${d} day${d > 1 ? 's' : ''})`,
                 lines,
                 claims && `Discounts: ${claims}`,
+                del && `${del.label}${del.fee ? ` ($${del.fee})` : ''}`,
+                del?.fee && v.address && `Address: ${v.address}`,
                 `Website estimate: ${money(e.total)}`,
                 v.notes && `Notes: ${v.notes}`,
               ]

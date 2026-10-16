@@ -1,6 +1,6 @@
 import PageHero from '@/components/PageHero';
 import RentalRequest from '@/components/RentalRequest';
-import { banners, gear, rentalDiscounts, rentalTerms, site } from '@/lib/site';
+import { banners, gear, rentalDelivery, rentalDiscounts, rentalTerms, site } from '@/lib/site';
 import { smsHref, telHref } from '@/lib/links';
 
 export const metadata = {
@@ -52,7 +52,7 @@ export default function RentalsPage() {
               <p className="muted">50% off, then another 25% off.</p>
             </li>
           </ul>
-          <RentalRequest gear={gear} discounts={rentalDiscounts} />
+          <RentalRequest gear={gear} discounts={rentalDiscounts} delivery={rentalDelivery} />
           <ul className="terms muted">
             {rentalTerms.map((t) => (
               <li key={t}>— {t}</li>
