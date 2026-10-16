@@ -25,6 +25,7 @@ Nearly everything lives in **`lib/site.js`**. Edit it and redeploy. Anything lef
 - **Featured artist:** add an entry to `featuredArtists`. Put their photo in `public/images/`.
 - **Hartless:** add `logline`, `poster` (e.g. `/images/hartless-poster.jpg`) and a YouTube/Vimeo `trailer` link.
 - **Gear:** edit `gear`. Set `rate` to a number to show a day rate, or leave `null` for "Rate on request". Add photos in `public/images/`.
+- **Rental discounts:** edit `rentalDiscounts` (student 50%, first rental 25%). They stack one after the other, and the rental form shows a live estimate.
 - **Commercial:** add `clients`, `projects` (YouTube/Vimeo links) and real `testimonials`.
 - **Boot camp:** dates, price and tracks are in `bootcamp`. Set `paymentLink` (Venmo, Cash App, PayPal.me, Square or a Stripe Payment Link) to show a "Pay $297" button after someone signs up.
 

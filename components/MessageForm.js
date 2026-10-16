@@ -10,7 +10,7 @@ import { site } from '@/lib/site';
 //
 // fields: [{ name, label, type?, required?, options?, placeholder?, full? }]
 // compose(values) → { subject, body }
-export default function MessageForm({ fields, compose, submitLabel = 'Send', after, extra, disabled }) {
+export default function MessageForm({ fields, compose, submitLabel = 'Send', after, extra, disabled, onChange }) {
   const [sent, setSent] = useState(null);
 
   function handleSubmit(event) {
@@ -24,7 +24,11 @@ export default function MessageForm({ fields, compose, submitLabel = 'Send', aft
   }
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form
+      className="form"
+      onSubmit={handleSubmit}
+      onChange={onChange && ((event) => onChange(Object.fromEntries(new FormData(event.currentTarget).entries())))}
+    >
       <div className="formGrid">
         {fields.map((field) => (
           <Field key={field.name} {...field} />
@@ -60,6 +64,14 @@ export default function MessageForm({ fields, compose, submitLabel = 'Send', aft
 function Field({ name, label, type = 'text', required, options, placeholder, full, min }) {
   const id = `f-${name}`;
   const common = { id, name, required, placeholder };
+  if (type === 'checkbox') {
+    return (
+      <label className={`check ${full ? 'fieldFull' : ''}`} htmlFor={id}>
+        <input id={id} name={name} type="checkbox" />
+        <span>{label}</span>
+      </label>
+    );
+  }
   return (
     <label className={`field ${full ? 'fieldFull' : ''}`} htmlFor={id}>
       <span className="fieldLabel">
