@@ -14,42 +14,29 @@ export default function CommercialPage() {
 
   return (
     <>
-      <PageHero eyebrow="Commercial" title="Video that moves people." accent="blue" art="/art/icon-camera.webp">
-        <p>We bring a film crew’s eye to brands, businesses and artists — from a single social clip to a full campaign.</p>
-        <div className="btnRow">
-          <a href="#book" className="btn btnPrimary">
-            Book a shoot
-          </a>
-          {projects.length > 0 && (
-            <a href="#work" className="btn btnGhost">
-              See the work
+      <PageHero
+        label="Commercial"
+        title="A film crew for your brand."
+        after={
+          <div className="btnRow">
+            <a href="#book" className="btn btnPrimary">
+              Book a shoot
             </a>
-          )}
-        </div>
+          </div>
+        }
+      >
+        <p>We bring the eye, the gear and the crew from our own films to businesses and artists — from a single social clip to a full campaign.</p>
       </PageHero>
 
-      <section className="section">
-        <div className="container">
-          <div className="grid grid2">
-            {services.map((s) => (
-              <div key={s.title} className="card">
-                <h2 className="cardTitle">{s.title}</h2>
-                <p className="muted">{s.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {projects.length > 0 && (
-        <section className="section sectionAlt" id="work">
+        <section className="section" id="work">
           <div className="container">
-            <h2 className="h2">Featured work</h2>
-            <div className="grid grid2">
+            <p className="label">Selected work</p>
+            <div className="workGrid">
               {projects.map((p) => (
                 <article key={p.title}>
                   <VideoEmbed url={p.video} title={p.title} />
-                  <h3 className="cardTitle" style={{ marginTop: 16 }}>
+                  <h3 className="h3" style={{ marginTop: 20 }}>
                     {p.title}
                   </h3>
                   <p className="muted" style={{ margin: 0 }}>
@@ -62,12 +49,25 @@ export default function CommercialPage() {
         </section>
       )}
 
+      <section className={`section ${projects.length ? 'sectionTop' : ''}`}>
+        <div className="container">
+          <p className="label">What we make</p>
+          <ul className="numbered">
+            {services.map((s, i) => (
+              <li key={s.title}>
+                <span className="indexNum">0{i + 1}</span>
+                <h2 className="h3">{s.title}</h2>
+                <p className="muted">{s.text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {clients.length > 0 && (
-        <section className="section">
+        <section className="section sectionTop">
           <div className="container">
-            <div className="sectionHead">
-              <h2 className="h2">Who we’ve worked with</h2>
-            </div>
+            <p className="label">Who we’ve worked with</p>
             <div className="logoWall">
               {clients.map((c) => {
                 const inner = c.logo ? <img src={c.logo} alt={c.name} loading="lazy" /> : c.name;
@@ -87,14 +87,14 @@ export default function CommercialPage() {
       )}
 
       {testimonials.length > 0 && (
-        <section className="section sectionAlt">
-          <div className="container grid grid2">
+        <section className="section sectionTop">
+          <div className="container workGrid">
             {testimonials.map((t) => (
-              <figure key={t.name} className="card quote">
+              <figure key={t.name} className="quote">
                 <blockquote>“{t.quote}”</blockquote>
                 <figcaption className="muted">
-                  <strong style={{ color: 'var(--text)' }}>{t.name}</strong>
-                  {t.role && ` — ${t.role}`}
+                  {t.name}
+                  {t.role && `, ${t.role}`}
                 </figcaption>
               </figure>
             ))}
@@ -102,13 +102,13 @@ export default function CommercialPage() {
         </section>
       )}
 
-      <section className="section" id="book">
-        <div className="container">
-          <div className="panel" style={{ marginTop: 0 }}>
+      <section className="section sectionTop" id="book">
+        <div className="container split">
+          <div>
             <h2 className="h2">Book a shoot</h2>
-            <p className="muted" style={{ marginTop: 0 }}>
-              Tell us what you’re making. We’ll get back to you with ideas and a quote.
-            </p>
+            <p className="muted">Tell us what you’re making. We’ll come back with ideas and a quote.</p>
+          </div>
+          <div className="formWrap">
             <ProjectInquiry />
           </div>
         </div>

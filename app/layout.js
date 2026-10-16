@@ -1,9 +1,9 @@
-import '@fontsource/anton/400.css';
+import '@fontsource/instrument-serif/400.css';
+import '@fontsource/instrument-serif/400-italic.css';
 import '@fontsource-variable/inter';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Reveal from '@/components/Reveal';
 import { site } from '@/lib/site';
 
 export const metadata = {
@@ -15,7 +15,6 @@ export const metadata = {
   description: site.description,
   openGraph: {
     type: 'website',
-    images: [{ url: '/art/mascot.webp', width: 555, height: 900, alt: 'Gr33nlight Studios mascot' }],
     siteName: site.name,
     locale: 'en_US',
   },
@@ -23,7 +22,7 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: '#050807',
+  themeColor: '#080808',
 };
 
 const orgJsonLd = {
@@ -47,7 +46,6 @@ export default function RootLayout({ children }) {
         <Header />
         <main id="main">{children}</main>
         <Footer />
-        <Reveal />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
       </body>
     </html>

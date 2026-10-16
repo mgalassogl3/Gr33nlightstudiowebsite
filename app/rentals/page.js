@@ -1,6 +1,5 @@
 import PageHero from '@/components/PageHero';
 import RentalRequest from '@/components/RentalRequest';
-import Icon from '@/components/Icon';
 import { gear, rentalTerms, site } from '@/lib/site';
 import { smsHref, telHref } from '@/lib/links';
 
@@ -13,16 +12,21 @@ export const metadata = {
 export default function RentalsPage() {
   return (
     <>
-      <PageHero eyebrow="Rentals" title="Grip & lighting, ready to roll." accent="orange" art="/art/bulb.webp">
-        <p>Pro gear for your shoot, out of East Hanover, NJ. Add what you need, pick your dates, and send the request — we’ll confirm availability and pricing.</p>
-        <div className="btnRow">
-          <a href="#request" className="btn btnPrimary">
-            Start a request
-          </a>
-          <a href={telHref} className="btn btnGhost">
-            <Icon name="call" /> {site.phoneDisplay}
-          </a>
-        </div>
+      <PageHero
+        label="Rentals"
+        title="Grip & lighting."
+        after={
+          <div className="btnRow">
+            <a href="#request" className="btn btnPrimary">
+              Start a request
+            </a>
+            <a href={telHref} className="btn btnGhost">
+              {site.phoneDisplay}
+            </a>
+          </div>
+        }
+      >
+        <p>The gear we light our own sets with, available for yours. Add what you need, pick your dates and send the request — we’ll confirm availability and pricing.</p>
       </PageHero>
 
       <section className="section">
@@ -30,14 +34,12 @@ export default function RentalsPage() {
           <RentalRequest gear={gear} />
           <ul className="terms muted">
             {rentalTerms.map((t) => (
-              <li key={t}>
-                <Icon name="check" size={16} /> {t}
-              </li>
+              <li key={t}>— {t}</li>
             ))}
+            <li>
+              — Need something not listed? <a href={smsHref('Hi Gr33nlight! Do you have this gear for rent: ')}>Text us</a>.
+            </li>
           </ul>
-          <p className="muted" style={{ marginTop: 20 }}>
-            Need something not listed? <a href={smsHref('Hi Gr33nlight! Do you have this gear for rent: ')}>Text us</a> — we may have it or know who does.
-          </p>
         </div>
       </section>
     </>

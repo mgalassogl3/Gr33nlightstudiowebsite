@@ -1,4 +1,5 @@
 import Icon from '@/components/Icon';
+import PageHero from '@/components/PageHero';
 import { BootcampSignup } from '@/components/Forms';
 import { bootcamp, site } from '@/lib/site';
 import { smsHref, telHref } from '@/lib/links';
@@ -38,152 +39,120 @@ const eventJsonLd = {
 export default function BootcampPage() {
   return (
     <>
-      <section className="pageHero accent-lime">
-        <div className="container bootHero">
-          <div>
-            <p className="eyebrow">Join the ultimate</p>
-            <h1 className="display">
-              {bootcamp.name.replace('GL3 ', '')}
-              <span className="glow" style={{ display: 'block' }}>
-                by GL3
-              </span>
-            </h1>
-            <p className="lead">
-              A {bootcamp.subtitle.toLowerCase()}. Hands-on training, real projects, real results — learn to make content that grows
-              your following.
-            </p>
+      <PageHero
+        label={`Boot Camp · starts ${bootcamp.startLabel}`}
+        title={bootcamp.name}
+        after={
+          <>
             <ul className="facts">
               <li>
-                <Icon name="calendar" />
-                <span>
-                  <strong>Starts {bootcamp.startLabel}</strong>
-                  {bootcamp.duration}
-                </span>
+                <span>Starts</span>
+                <strong>{bootcamp.startLabel}</strong>
               </li>
               <li>
-                <Icon name="clock" />
-                <span>
-                  <strong>{bootcamp.schedule}</strong>
-                  {bootcamp.time}
-                </span>
+                <span>When</span>
+                <strong>
+                  {bootcamp.schedule}, {bootcamp.time}
+                </strong>
               </li>
               <li>
-                <Icon name="pin" />
-                <span>
-                  <strong>GL3 Studios</strong>
-                  East Hanover, NJ
-                </span>
+                <span>Where</span>
+                <strong>East Hanover, NJ</strong>
               </li>
               <li>
-                <Icon name="check" />
-                <span>
-                  <strong>${bootcamp.price} early bird</strong>
-                  Limited spots
-                </span>
+                <span>Early bird</span>
+                <strong>${bootcamp.price}</strong>
               </li>
             </ul>
             <div className="btnRow">
               <a href="#signup" className="btn btnPrimary">
-                Save my spot <Icon name="arrow" size={18} />
+                Save my spot
               </a>
-              <a href="#tracks" className="btn btnGhost">
-                Pick your focus
+              <a href="/images/bootcamp-flier.webp" className="btn btnGhost" target="_blank" rel="noopener noreferrer">
+                View the flier
               </a>
             </div>
-          </div>
-          <img
-            src="/images/bootcamp-flier.webp"
-            alt={`${bootcamp.name} flier: five creator tracks, starts ${bootcamp.startLabel}, ${bootcamp.schedule} ${bootcamp.time}, early bird $${bootcamp.price}`}
-            className="flier"
-            width="1024"
-            height="1536"
-          />
-        </div>
-      </section>
+          </>
+        }
+      >
+        <p>
+          A {bootcamp.subtitle.toLowerCase()} at the studio. Hands-on training, real projects and small groups — you leave with work you
+          can post and the skills to keep making it.
+        </p>
+      </PageHero>
 
       <section className="section" id="tracks">
         <div className="container">
           <div className="sectionHead">
-            <div>
-              <p className="eyebrow">Pick your focus</p>
-              <h2 className="h2">Five tracks. One month.</h2>
-            </div>
-            <p className="muted">Choose the lane that fits the content you want to make. Every track ends with real work you can post.</p>
+            <h2 className="h2">Pick your focus.</h2>
+            <p className="muted">Five tracks, one month. Choose the lane that fits the content you want to make.</p>
           </div>
-          <div className="tracks">
-            {bootcamp.tracks.map((t) => (
-              <article key={t.id} className={`track c-${t.color} reveal`}>
-                {t.art ? (
-                  <img src={t.art} alt="" className="trackArt" loading="lazy" />
-                ) : (
-                  <span className="trackIcon">
-                    <Icon name={t.icon} size={24} />
-                  </span>
-                )}
-                <h3 className="cardTitle">{t.name}</h3>
-                <ul className="ticks">
-                  {t.points.map((p) => (
-                    <li key={p}>{p}</li>
-                  ))}
-                </ul>
-              </article>
+          <ol className="trackList">
+            {bootcamp.tracks.map((t, i) => (
+              <li key={t.id} className="trackItem">
+                <span className="indexNum">0{i + 1}</span>
+                <h3 className="h3">{t.name}</h3>
+                <p className="trackPoints">{t.points.join(' · ')}</p>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
-      <section className="section sectionAlt">
+      <section className="section sectionTop">
         <div className="container">
-          <div className="grid grid2">
-            {bootcamp.perks.map((p) => (
-              <div key={p.title} className="card">
-                <h3 className="cardTitle">{p.title}</h3>
+          <ul className="numbered">
+            {bootcamp.perks.map((p, i) => (
+              <li key={p.title}>
+                <span className="indexNum">0{i + 1}</span>
+                <h3 className="h3">{p.title}</h3>
                 <p className="muted">{p.text}</p>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
-      <section className="section" id="signup">
-        <div className="container signupGrid">
-          <div className="priceCard">
-            <p className="eyebrow">{bootcamp.priceLabel}</p>
-            <div className="price">
-              <sup>$</sup>
-              {bootcamp.price}
-            </div>
-            <p>{bootcamp.schedule} · {bootcamp.duration.toLowerCase()} · small groups</p>
-            <span className="stamp">Limited spots</span>
+      <section className="section sectionTop" id="signup">
+        <div className="container split">
+          <div>
+            <p className="label">{bootcamp.priceLabel}</p>
+            <div className="price">${bootcamp.price}</div>
+            <p className="muted" style={{ marginTop: 20 }}>
+              {bootcamp.schedule}, {bootcamp.time}, {bootcamp.duration.toLowerCase()}.<br />
+              Small groups. Limited spots.
+            </p>
           </div>
-          <div className="panel">
-            <h2 className="h2">Sign up now</h2>
-            <p className="muted" style={{ marginTop: 0 }}>
-              Fill this in and send it — we’ll text you back to confirm your spot.
+          <div className="formWrap">
+            <h2 className="h2">Sign up</h2>
+            <p className="muted" style={{ marginTop: -8 }}>
+              Send this and we’ll text you back to confirm your spot.
             </p>
             <BootcampSignup />
           </div>
         </div>
       </section>
 
-      <section className="section sectionAlt">
-        <div className="container">
+      <section className="section sectionTop">
+        <div className="container split">
           <h2 className="h2">Questions</h2>
-          <div className="faq">
-            {bootcamp.faq.map((f) => (
-              <details key={f.q}>
-                <summary>{f.q}</summary>
-                <p>{f.a}</p>
-              </details>
-            ))}
-          </div>
-          <div className="btnRow">
-            <a href={telHref} className="btn btnGhost">
-              <Icon name="call" /> Call {site.phoneDisplay}
-            </a>
-            <a href={smsHref(`Hi GL3! I have a question about the ${bootcamp.name}.`)} className="btn btnGhost">
-              <Icon name="chat" /> Text a question
-            </a>
+          <div>
+            <div className="faq">
+              {bootcamp.faq.map((f) => (
+                <details key={f.q}>
+                  <summary>{f.q}</summary>
+                  <p>{f.a}</p>
+                </details>
+              ))}
+            </div>
+            <div className="btnRow">
+              <a href={telHref} className="arrowLink">
+                Call {site.phoneDisplay} <Icon name="arrow" size={16} />
+              </a>
+              <a href={smsHref(`Hi GL3! I have a question about the ${bootcamp.name}.`)} className="arrowLink">
+                Text a question <Icon name="arrow" size={16} />
+              </a>
+            </div>
           </div>
         </div>
       </section>

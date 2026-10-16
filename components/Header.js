@@ -47,7 +47,7 @@ export default function Header() {
           aria-label={open ? 'Close menu' : 'Open menu'}
           onClick={() => setOpen((v) => !v)}
         >
-          <Icon name={open ? 'close' : 'menu'} size={24} />
+          <Icon name={open ? 'close' : 'menu'} size={22} />
         </button>
       </div>
     </header>

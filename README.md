@@ -30,8 +30,12 @@ Nearly everything lives in **`lib/site.js`**. Edit it and redeploy. Anything lef
 
 ## Artwork
 
-`public/art/` holds the GL3 artwork (mascot, lightbulb logo, hub characters, gear icons and spotlight
-stage backgrounds), cropped and compressed from the GL3 Hub artwork. Real photos go in `public/images/`.
+The site is intentionally minimal: black, off-white type and one green accent, led by real imagery.
+
+- **Home opening shot:** set `homeHero.image` (a still) and/or `homeHero.video` (a short muted mp4 loop)
+  in `lib/site.js`. Until then the Hartless title sits on a soft key light.
+- **Photos** go in `public/images/`, video in `public/video/`.
+- `public/art/` holds the four GL3 Hub characters, used only in the "GL3 Hub" section of the Music page.
 
 ## How the forms work
 
