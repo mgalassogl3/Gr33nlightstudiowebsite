@@ -22,7 +22,7 @@ export default function HartlessPage() {
   return (
     <>
       <PageHero
-        label={`A Gr33nlight film · in collaboration with ${film.collaboration}`}
+        label={`A Gr33nlight Entertainment film · in collaboration with ${film.collaboration}`}
         title={<span className="spaced heroSpaced">{film.title}</span>}
         image={film.banner}
         position="center 40%"
@@ -58,13 +58,9 @@ export default function HartlessPage() {
                 <span>Release</span>
                 <strong>{film.release}</strong>
               </li>
-              <li>
-                <span>Production</span>
-                <strong>Gr33nlight Studios</strong>
-              </li>
-              <li>
-                <span>In collaboration with</span>
-                <strong>{film.collaboration}</strong>
+              <li style={{ gridColumn: '1 / -1' }}>
+                <span>Produced by</span>
+                <strong>{film.producedBy}</strong>
               </li>
             </ul>
             <SocialLinks links={{ instagram: film.instagram }} withLabels />

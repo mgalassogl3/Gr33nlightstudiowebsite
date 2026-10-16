@@ -7,7 +7,7 @@ import { films, laurels, projects } from '@/lib/site';
 export const metadata = {
   title: 'Film',
   description:
-    'Gr33nlight Studios films and scripts: Hartless (short, in production, in collaboration with Goenjin), Looking For Hart, Trigger, In Search of the Wu and more.',
+    'Gr33nlight Studios films and scripts: Hartless (short, in production, with Goenjin USA), Looking For Hart, Trigger, In Search of the Wu and more.',
   openGraph: { images: [{ url: '/images/hartless/wide.webp', width: 2880, height: 1080, alt: 'Still from Hartless' }] },
 };
 
