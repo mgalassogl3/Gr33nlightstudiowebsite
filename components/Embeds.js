@@ -1,4 +1,5 @@
 import { spotifyEmbedUrl, videoEmbedUrl } from '@/lib/links';
+import LoopVideo from './LoopVideo';
 
 export function SpotifyEmbed({ url, compact = false, title = 'Spotify player' }) {
   const src = spotifyEmbedUrl(url);
@@ -22,17 +23,11 @@ export function VideoFile({ src, poster, title, vertical = false, loop = false }
   if (!src) return null;
   return (
     <div className={`video ${vertical ? 'videoVertical' : ''}`}>
-      <video
-        src={src}
-        poster={poster}
-        title={title}
-        controls
-        autoPlay={loop}
-        muted={loop}
-        loop={loop}
-        playsInline
-        preload="none"
-      />
+      {loop ? (
+        <LoopVideo src={src} poster={poster} title={title} />
+      ) : (
+        <video src={src} poster={poster} title={title} controls playsInline preload="none" />
+      )}
     </div>
   );
 }
