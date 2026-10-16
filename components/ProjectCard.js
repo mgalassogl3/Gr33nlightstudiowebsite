@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Laurel from './Laurel';
 
 // One project on the slate: poster (or a typographic stand-in), logline, and an
 // expandable story/themes block.
@@ -26,7 +27,7 @@ export default function ProjectCard({ project, laurels = [] }) {
         {laurels.length > 0 && (
           <div className="laurelsInline">
             {laurels.map((l) => (
-              <img key={l.id} src={l.image} alt={l.alt} loading="lazy" />
+              <Laurel key={l.id} laurel={l} height={78} />
             ))}
           </div>
         )}

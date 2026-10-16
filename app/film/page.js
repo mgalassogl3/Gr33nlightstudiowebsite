@@ -2,6 +2,7 @@ import Link from 'next/link';
 import PageHero from '@/components/PageHero';
 import ProjectCard from '@/components/ProjectCard';
 import Icon from '@/components/Icon';
+import Laurel from '@/components/Laurel';
 import { films, laurels, projects } from '@/lib/site';
 
 export const metadata = {
@@ -11,7 +12,9 @@ export const metadata = {
   openGraph: { images: [{ url: '/images/hartless/wide.webp', width: 2880, height: 1080, alt: 'Still from Hartless' }] },
 };
 
-const laurelsFor = (slug) => laurels.filter((l) => l.project === slug);
+// Strongest results first.
+const rank = (l) => ['winner', 'finalist', 'nominee', 'quarter', 'selection'].findIndex((k) => l.status.toLowerCase().includes(k));
+const laurelsFor = (slug) => laurels.filter((l) => l.project === slug).sort((a, b) => rank(a) - rank(b));
 
 export default function FilmPage() {
   const hartless = films.find((f) => f.slug === 'hartless');
@@ -66,7 +69,7 @@ export default function FilmPage() {
         <section className="laurelBand" aria-label="Laurels and awards">
           <div className="container laurels">
             {studioLaurels.map((l) => (
-              <img key={l.id} src={l.image} alt={l.alt} loading="lazy" />
+              <Laurel key={l.id} laurel={l} height={92} />
             ))}
           </div>
         </section>
