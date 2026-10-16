@@ -1,5 +1,5 @@
 import PageHero from '@/components/PageHero';
-import { VideoEmbed } from '@/components/Embeds';
+import { VideoEmbed, VideoFile } from '@/components/Embeds';
 import { ProjectInquiry } from '@/components/Forms';
 import { banners, commercial } from '@/lib/site';
 
@@ -10,7 +10,9 @@ export const metadata = {
 };
 
 export default function CommercialPage() {
-  const { services, clients, projects, testimonials } = commercial;
+  const { services, clients, projects: allProjects, testimonials } = commercial;
+  const projects = allProjects.filter((p) => !p.vertical);
+  const social = allProjects.filter((p) => p.vertical);
 
   return (
     <>
@@ -37,7 +39,7 @@ export default function CommercialPage() {
             <div className="workGrid">
               {projects.map((p) => (
                 <article key={p.title}>
-                  <VideoEmbed url={p.video} title={p.title} />
+                  {p.file ? <VideoFile src={p.file} poster={p.poster} title={p.title} /> : <VideoEmbed url={p.video} title={p.title} />}
                   <h3 className="h3" style={{ marginTop: 20 }}>
                     {p.title}
                   </h3>
@@ -51,7 +53,26 @@ export default function CommercialPage() {
         </section>
       )}
 
-      <section className={`section ${projects.length ? 'sectionTop' : ''}`}>
+      {social.length > 0 && (
+        <section className={`section ${projects.length ? 'sectionTop' : ''}`} id="social">
+          <div className="container">
+            <div className="sectionHead">
+              <h2 className="h2">Social</h2>
+              <p className="muted">Vertical content made for Reels, TikTok and Shorts.</p>
+            </div>
+            <div className="socialRow">
+              {social.map((p) => (
+                <figure key={p.file || p.video} className="socialClip">
+                  <VideoFile src={p.file} poster={p.poster} title={p.title} vertical loop />
+                  <figcaption className="muted">{[p.client, p.title].filter(Boolean).join(' · ')}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section className={`section ${projects.length || social.length ? 'sectionTop' : ''}`}>
         <div className="container">
           <p className="label">What we make</p>
           <ul className="numbered">

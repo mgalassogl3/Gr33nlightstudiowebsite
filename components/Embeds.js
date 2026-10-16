@@ -17,6 +17,26 @@ export function SpotifyEmbed({ url, compact = false, title = 'Spotify player' })
   );
 }
 
+// A self-hosted mp4 with native controls (used when there's no YouTube/Vimeo link).
+export function VideoFile({ src, poster, title, vertical = false, loop = false }) {
+  if (!src) return null;
+  return (
+    <div className={`video ${vertical ? 'videoVertical' : ''}`}>
+      <video
+        src={src}
+        poster={poster}
+        title={title}
+        controls={!loop}
+        autoPlay={loop}
+        muted={loop}
+        loop={loop}
+        playsInline
+        preload="none"
+      />
+    </div>
+  );
+}
+
 export function VideoEmbed({ url, title }) {
   const src = videoEmbedUrl(url);
   if (!src) return null;
