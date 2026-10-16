@@ -4,9 +4,9 @@ import { banners, gear, rentalDiscounts, rentalTerms, site } from '@/lib/site';
 import { smsHref, telHref } from '@/lib/links';
 
 export const metadata = {
-  title: 'Grip & Lighting Rentals in NJ',
+  title: 'Lighting, Grip & Camera Rentals in NJ',
   description:
-    'Rent GVM SD300B Pro LED lights (15 available), C-stands, a Dana Dolly, a flag kit and A-clamps in East Hanover, NJ. Students 50% off, first rental 25% off.',
+    'Rent GVM SD300B Pro LED lights (15 available), a Lumix GX8 4K camera kit, C-stands, a Dana Dolly, a flag kit and A-clamps in East Hanover, NJ. Students 50% off, first rental 25% off.',
 };
 
 export default function RentalsPage() {
@@ -14,7 +14,7 @@ export default function RentalsPage() {
     <>
       <PageHero
         label="Rentals"
-        title="Grip & lighting."
+        title="Lighting, grip & camera."
         image={banners.rentals}
         after={
           <div className="btnRow">

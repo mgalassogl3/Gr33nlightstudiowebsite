@@ -7,7 +7,7 @@ const index = [
   { href: '/film', title: 'Film', text: 'Original features and shorts, made in New Jersey.' },
   { href: '/music', title: 'Music', text: 'Marcus Glass and the artists of the GL3 Hub.' },
   { href: '/bootcamp', title: 'Boot Camp', text: 'A month-long, hands-on course for content creators.' },
-  { href: '/rentals', title: 'Rentals', text: 'Grip and lighting for your shoot.' },
+  { href: '/rentals', title: 'Rentals', text: 'Lighting, grip and camera gear for your shoot.' },
   { href: '/commercial', title: 'Commercial', text: 'Brand, social and event video.' },
 ];
 
