@@ -6,7 +6,7 @@ import { banners, commercial } from '@/lib/site';
 export const metadata = {
   title: 'Commercial Video Production in NJ',
   description:
-    'Brand videos, social content, event coverage and music videos by Gr33nlight Studios in East Hanover, NJ. See who we’ve worked with and book a shoot.',
+    'Brand films, social content, product video and event coverage for businesses, from Gr33nlight Studios in East Hanover, NJ. See who we’ve worked with and book a shoot.',
 };
 
 export default function CommercialPage() {
@@ -30,7 +30,7 @@ export default function CommercialPage() {
           </div>
         }
       >
-        <p>We bring the eye, the gear and the crew from our own films to businesses and artists — from a single social clip to a full campaign.</p>
+        <p>We bring the eye, the gear and the crew from our own films to your business — from a single social clip to a full campaign.</p>
       </PageHero>
 
       {projects.length > 0 && (

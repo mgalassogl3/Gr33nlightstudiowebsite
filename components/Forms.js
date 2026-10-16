@@ -77,7 +77,7 @@ export function ProjectInquiry() {
           label: 'Type of project',
           type: 'select',
           required: true,
-          options: ['Brand / promo video', 'Social content', 'Event coverage', 'Music video', 'Other'],
+          options: ['Brand / promo video', 'Social content', 'Product video', 'Event coverage', 'Other'],
         },
         { name: 'date', label: 'Shoot date or deadline', type: 'text', placeholder: 'e.g. early December' },
         { name: 'budget', label: 'Budget range', type: 'text' },
